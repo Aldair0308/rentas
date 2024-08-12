@@ -15,7 +15,7 @@ export class Cliente {
   telefono: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  fecha: Date;
+  fecha: string;
 
   @Column({ default: true })
   activo: boolean;  // Si el abono está activo o no
