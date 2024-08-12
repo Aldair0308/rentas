@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'mysql-8ofb.railway.internal',
-      port: 50903,
+      port: 3306,
       username: 'root',
       password: 'lXvzrbsBoBWhbcnXsIfzywaCBVNVihXE',
       database: 'railway',
