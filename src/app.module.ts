@@ -17,7 +17,6 @@ import { ClientesModule } from './clientes/clientes.module';
       synchronize: true, // Solo en desarrollo, sincroniza automáticamente el esquema de la base de datos
     }),
     ClientesModule,
-
   ],
   controllers: [],
   providers: [],
