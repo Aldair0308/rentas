@@ -1,4 +1,4 @@
-import { IsNumber, IsDate, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsNumber, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateDeptoDto {
   @IsNumber()
@@ -13,11 +13,11 @@ export class CreateDeptoDto {
   @IsNotEmpty()
   deposito: number;
 
-  @IsDate()
+  @IsString()
   @IsOptional()
   luz?: string;
 
-  @IsDate()
+  @IsString()
   @IsOptional()
   vencimiento?: string;
 }

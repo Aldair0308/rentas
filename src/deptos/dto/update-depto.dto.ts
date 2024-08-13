@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsOptional, IsNumber, IsDate, IsBoolean } from 'class-validator';
+import { IsOptional, IsNumber, IsBoolean, IsString } from 'class-validator';
 import { CreateDeptoDto } from './create-depto.dto';
 
 export class UpdateDeptoDto extends PartialType(CreateDeptoDto) {
@@ -16,11 +16,11 @@ export class UpdateDeptoDto extends PartialType(CreateDeptoDto) {
   deposito?: number;
 
   @IsOptional()
-  @IsDate()
+  @IsString()
   luz?: string;
 
   @IsOptional()
-  @IsDate()
+  @IsString()
   vencimiento?: string;
 
   @IsOptional()
