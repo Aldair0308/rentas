@@ -14,12 +14,12 @@ export class Depto {
   @Column()
   deposito: number;
 
-  @Column({ type: 'string', default: () => '2024-08-12' })
-  luz: string;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  luz: Date;
 
-  @Column({ type: 'string', default: () => 'CURRENT_TIMESTAMP' })
-  vencimiento: string;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  vencimiento: Date;
 
   @Column({ default: true })
-  activo: boolean;
+  activo: boolean; 
 }
