@@ -3,6 +3,7 @@ import { GastosModule } from './gastos/gastos.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientesModule } from './clientes/clientes.module';
 import { DeptosModule } from './deptos/deptos.module';
+import { PagosModule } from './pagos/pagos.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { DeptosModule } from './deptos/deptos.module';
     }),
     ClientesModule,
     DeptosModule,
+    PagosModule,
   ],
   controllers: [],
   providers: [],
