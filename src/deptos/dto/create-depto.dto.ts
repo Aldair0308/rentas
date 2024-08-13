@@ -11,11 +11,11 @@ export class CreateDeptoDto {
   deposito: number;
 
   @IsDateString()
-  luz: string;
+  luz?: string;
 
   @IsDateString()
-  vencimiento: string;
+  vencimiento?: string;
 
   @IsBoolean()
-  activo: boolean;
+  activo?: boolean;
 }
