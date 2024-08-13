@@ -31,15 +31,26 @@ export class DeptosService {
   }
 
   async update(id: number, updateDeptoDto: UpdateDeptoDto) {
+    // Transformar las fechas de string a Date si están presentes
+    if (updateDeptoDto.luz) {
+      updateDeptoDto.luz = new Date(updateDeptoDto.luz);
+    }
+    if (updateDeptoDto.vencimiento) {
+      updateDeptoDto.vencimiento = new Date(updateDeptoDto.vencimiento);
+    }
+
+    // Preload the entity
     const depto = await this.deptoRepository.preload({
       id,
       ...updateDeptoDto,
     });
 
     if (!depto) {
-      throw new NotFoundException (`Depto con el ID ${id} no encontrado`)
+      throw new NotFoundException(`Depto con el ID ${id} no encontrado`);
     }
-    return  await this.deptoRepository.save(depto);
+
+    // Save the updated entity
+    return await this.deptoRepository.save(depto);
   }
 
   async remove(id: number) {
