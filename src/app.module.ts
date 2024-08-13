@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { GastosModule } from './gastos/gastos.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientesModule } from './clientes/clientes.module';
+import { DeptosModule } from './deptos/deptos.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ClientesModule } from './clientes/clientes.module';
       synchronize: true, // Solo en desarrollo, sincroniza automáticamente el esquema de la base de datos
     }),
     ClientesModule,
+    DeptosModule,
   ],
   controllers: [],
   providers: [],
