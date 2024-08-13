@@ -1,23 +1,21 @@
-import { IsNumber, IsDate, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsDateString, IsNumber, IsBoolean } from 'class-validator';
 
 export class CreateDeptoDto {
   @IsNumber()
-  @IsNotEmpty()
   numero: number;
 
   @IsNumber()
-  @IsNotEmpty()
   precio: number;
 
   @IsNumber()
-  @IsNotEmpty()
   deposito: number;
 
-  @IsDate()
-  @IsOptional()
-  luz?: string;
+  @IsDateString()
+  luz: string;
 
-  @IsDate()
-  @IsOptional()
-  vencimiento?: string;
+  @IsDateString()
+  vencimiento: string;
+
+  @IsBoolean()
+  activo: boolean;
 }

@@ -23,15 +23,7 @@ export class DeptosController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDeptoDto: UpdateDeptoDto) {
-    // Convert string dates to Date objects if they are present
-    if (updateDeptoDto.luz && typeof updateDeptoDto.luz === 'string') {
-      updateDeptoDto.luz = new Date(updateDeptoDto.luz);
-    }
-    if (updateDeptoDto.vencimiento && typeof updateDeptoDto.vencimiento === 'string') {
-      updateDeptoDto.vencimiento = new Date(updateDeptoDto.vencimiento);
-    }
-    
+  update(@Param('id') id: string, @Body() updateDeptoDto: UpdateDeptoDto) {   
     return this.deptosService.update(+id, updateDeptoDto);
   }
 
