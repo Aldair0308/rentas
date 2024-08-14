@@ -64,11 +64,18 @@ export class ClientesService {
   }
 
   async getClientesInfo() {
-    const clientes = await this.clienteRepository.find();
-    return clientes.map(cliente => ({
-      depto: cliente.depto,
-      nombre: cliente.nombre,
-      telefono: cliente.telefono
-    }));
+    try {
+      const clientes = await this.clienteRepository.find();
+      console.log('Clientes:', clientes);
+      return clientes.map(cliente => ({
+        depto: cliente.depto,
+        nombre: cliente.nombre,
+        telefono: cliente.telefono
+      }));
+    } catch (error) {
+      console.error('Error en getClientesInfo:', error);
+      throw error;
+    }
   }
+  
 }
