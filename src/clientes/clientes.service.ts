@@ -64,8 +64,22 @@ export class ClientesService {
   }
 
   async getClientesInfo() {
-    return this.clienteRepository.find({
-      select: ['depto', 'nombre', 'telefono']
-    });
+    try {
+      // Usando QueryBuilder para construir la consulta
+      const clientes = await this.clienteRepository
+        .createQueryBuilder('cliente')
+        .select(['cliente.depto', 'cliente.nombre', 'cliente.telefono'])
+        .getRawMany();
+
+      // Transformar el resultado en JSON
+      return clientes.map(cliente => ({
+        depto: cliente.cliente_depto,
+        nombre: cliente.cliente_nombre,
+        telefono: cliente.cliente_telefono
+      }));
+    } catch (error) {
+      console.error('Error en getClientesInfo:', error);
+      throw error;
+    }
   }
 }
