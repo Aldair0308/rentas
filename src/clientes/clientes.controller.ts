@@ -45,8 +45,10 @@ export class ClientesController {
   }
   
   @Get('info')
-  getClientesInfo() {
+  async getClientesInfo() {
+    console.log('Llamada a /clientes/info');
     return this.clientesService.getClientesInfo();
   }
+  
   
 }
