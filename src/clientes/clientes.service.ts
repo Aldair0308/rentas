@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -35,20 +35,12 @@ export class ClientesService {
   }
 
   async findOne(id: number) {
-    if (isNaN(id)) {
-      throw new BadRequestException('El ID proporcionado no es válido');
-    }
-  
-    const cliente = await this.clienteRepository.findOne({
-      where: { id },
-    });
-  
+    const cliente = await this.clienteRepository.findOneBy({ id });
     if (!cliente) {
       throw new NotFoundException(`Cliente con el id ${id} no encontrado`);
     }
     return cliente;
   }
-  
 
   async update(id: number, updateClienteDto: UpdateClienteDto) {
     const cliente = await this.clienteRepository.preload({
@@ -64,11 +56,7 @@ export class ClientesService {
   }
 
   async remove(id: number) {
-    if (isNaN(id)) {
-      throw new BadRequestException('El ID proporcionado no es válido');
-    }
-  
-    const cliente = await this.findOne(id);
+    const cliente = await this.findOne(id); // Reuse findOne to check existence
     if (cliente) {
       await this.clienteRepository.remove(cliente);
       return { message: `Cliente con el id ${id} ha sido eliminado` };
