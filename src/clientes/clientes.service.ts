@@ -65,17 +65,19 @@ export class ClientesService {
 
   async getClientesInfo() {
     try {
-      // Usando QueryBuilder para construir la consulta
+      // Usar createQueryBuilder para obtener los datos
       const clientes = await this.clienteRepository
         .createQueryBuilder('cliente')
         .select(['cliente.depto', 'cliente.nombre', 'cliente.telefono'])
-        .getRawMany();
+        .getMany();
 
-      // Transformar el resultado en JSON
-      return clientes.map(cliente => ({
-        depto: cliente.cliente_depto,
-        nombre: cliente.cliente_nombre,
-        telefono: cliente.cliente_telefono
+      // Filtrar clientes con valores válidos en 'depto'
+      const validClientes = clientes.filter(cliente => !isNaN(cliente.depto));
+
+      return validClientes.map(cliente => ({
+        depto: cliente.depto,
+        nombre: cliente.nombre,
+        telefono: cliente.telefono
       }));
     } catch (error) {
       console.error('Error en getClientesInfo:', error);
