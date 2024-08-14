@@ -34,6 +34,7 @@ export class ClientesController {
 
   @Get('info')
   async getClientesInfo() {
+    console.log('petición de info')
     return this.clientesService.getClientesInfo();
   }
 }
