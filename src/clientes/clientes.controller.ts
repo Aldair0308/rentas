@@ -30,7 +30,7 @@ export class ClientesController {
   async update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto) {
     const idNumber = Number(id);
     if (isNaN(idNumber)) {
-      throw new BadRequestException('El ID proporcionado no es válido');
+      throw new BadRequestException('El ID proporcionado no es válido up');
     }
     return this.clientesService.update(idNumber, updateClienteDto);
   }
