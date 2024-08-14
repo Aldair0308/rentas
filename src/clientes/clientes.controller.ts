@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ClientesService } from './clientes.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
@@ -18,36 +18,22 @@ export class ClientesController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    const idNumber = Number(id);
-    if (isNaN(idNumber)) {
-      throw new BadRequestException('El ID proporcionado no es válido');
-    }
-    return this.clientesService.findOne(idNumber);
+  findOne(@Param('id') id: string) {
+    return this.clientesService.findOne(+id);
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto) {
-    const idNumber = Number(id);
-    if (isNaN(idNumber)) {
-      throw new BadRequestException('El ID proporcionado no es válido up');
-    }
-    return this.clientesService.update(idNumber, updateClienteDto);
+  update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto) {
+    return this.clientesService.update(+id, updateClienteDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    const idNumber = Number(id);
-    if (isNaN(idNumber)) {
-      throw new BadRequestException('El ID proporcionado no es válido');
-    }
-    return this.clientesService.remove(idNumber);
+  remove(@Param('id') id: string) {
+    return this.clientesService.remove(+id);
   }
-  
+
   @Get('info')
   async getClientesInfo() {
     return this.clientesService.getClientesInfo();
   }
-  
-  
 }
