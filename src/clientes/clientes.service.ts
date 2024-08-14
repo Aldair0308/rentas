@@ -64,8 +64,11 @@ export class ClientesService {
   }
 
   async getClientesInfo() {
-    return this.clienteRepository.find({
-      select: ['depto', 'nombre', 'telefono']
-    });
+    const clientes = await this.clienteRepository.find();
+    return clientes.map(cliente => ({
+      depto: cliente.depto,
+      nombre: cliente.nombre,
+      telefono: cliente.telefono
+    }));
   }
 }
