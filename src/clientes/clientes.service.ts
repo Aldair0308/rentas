@@ -71,9 +71,10 @@ export class ClientesService {
         .select(['cliente.depto', 'cliente.nombre', 'cliente.telefono'])
         .getMany();
 
-      // Filtrar clientes con valores válidos en 'depto'
-      const validClientes = clientes.filter(cliente => !isNaN(cliente.depto));
+      // Verifica si 'depto' contiene valores NaN antes de procesar
+      const validClientes = clientes.filter(cliente => !isNaN(cliente.depto) && cliente.depto !== null);
 
+      // Devolver datos transformados
       return validClientes.map(cliente => ({
         depto: cliente.depto,
         nombre: cliente.nombre,
@@ -81,7 +82,8 @@ export class ClientesService {
       }));
     } catch (error) {
       console.error('Error en getClientesInfo:', error);
-      throw error;
+      // Lanza un error específico para identificar el problema
+      throw new Error('Error en la consulta de clientes');
     }
   }
 }
