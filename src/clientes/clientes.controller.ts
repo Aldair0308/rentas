@@ -31,4 +31,9 @@ export class ClientesController {
   remove(@Param('id') id: string) {
     return this.clientesService.remove(+id);
   }
+  
+  @Get('info')
+  getClientesInfo() {
+    return this.clientesService.getClientesInfo();
+  }
 }

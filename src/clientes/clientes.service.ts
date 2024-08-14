@@ -62,4 +62,11 @@ export class ClientesService {
       return { message: `Cliente con el id ${id} ha sido eliminado` };
     }
   }
+
+  async getClientesInfo() {
+    // Obtén solo los campos deseados
+    return this.clienteRepository.find({
+      select: ['depto', 'nombre', 'telefono']
+    });
+  }
 }
