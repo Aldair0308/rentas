@@ -34,7 +34,12 @@ export class ClientesController {
 
   @Get('info')
   async getClientesInfo() {
-    console.log('petición de info')
-    return this.clientesService.getClientesInfo();
+    try {
+      console.log('Petición de info');
+      return await this.clientesService.getClientesInfo();
+    } catch (error) {
+      console.error('Error en getClientesInfo controlador:', error);
+      throw new Error('Error interno del servidor');
+    }
   }
 }

@@ -65,14 +65,14 @@ export class ClientesService {
 
   async getClientesInfo() {
     try {
-      // Usar createQueryBuilder para obtener los datos
+      // Usar QueryBuilder para obtener datos de forma segura
       const clientes = await this.clienteRepository
         .createQueryBuilder('cliente')
         .select(['cliente.depto', 'cliente.nombre', 'cliente.telefono'])
         .getMany();
 
-      // Verifica si 'depto' contiene valores NaN antes de procesar
-      const validClientes = clientes.filter(cliente => !isNaN(cliente.depto) && cliente.depto !== null);
+      // Asegúrate de filtrar valores inválidos
+      const validClientes = clientes.filter(cliente => cliente.depto !== null && !isNaN(cliente.depto));
 
       // Devolver datos transformados
       return validClientes.map(cliente => ({
@@ -82,7 +82,6 @@ export class ClientesService {
       }));
     } catch (error) {
       console.error('Error en getClientesInfo:', error);
-      // Lanza un error específico para identificar el problema
       throw new Error('Error en la consulta de clientes');
     }
   }
