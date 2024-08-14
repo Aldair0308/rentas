@@ -41,6 +41,7 @@ export class ClientesService {
     }
     return cliente;
   }
+  
 
   async update(id: number, updateClienteDto: UpdateClienteDto) {
     const cliente = await this.clienteRepository.preload({
@@ -64,7 +65,6 @@ export class ClientesService {
   }
 
   async getClientesInfo() {
-    // Obtén solo los campos deseados
     return this.clienteRepository.find({
       select: ['depto', 'nombre', 'telefono']
     });
