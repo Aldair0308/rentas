@@ -14,6 +14,18 @@ export class PagosService {
   ){}
 
   async create(createPagoDto: CreatePagoDto) {
+    // Obtener la fecha y hora actual en UTC
+    // const now = new Date();
+  
+    // Obtener el desfase de UTC a la hora local de CDMX (CST)
+    // const offset = -6 * 60; // UTC-6 minutos
+  
+    // Ajustar la fecha y hora a la zona horaria de CDMX
+    // const localDate = new Date(now.getTime() + offset * 60 * 1000);
+  
+    // Establecer el timestamp en el formato ISO
+    // createGastoDto.fecha = localDate.toISOString();
+  
     const pago = this.pagoRepository.create(createPagoDto);
     return await this.pagoRepository.save(pago);
   }

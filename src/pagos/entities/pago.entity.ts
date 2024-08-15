@@ -22,4 +22,7 @@ export class Pago {
 
   @Column({ default: true })
   activo: boolean;
+  
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  fecha: Date;
 }
